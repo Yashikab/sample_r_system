@@ -40,10 +40,10 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
       volumes:
-        - /src:/app/src
+        - /src:/ci_workspace/src
     defaults:
       run:
-        working-directory: /app
+        working-directory: /ci_workspace
     steps:
       - name: pwd
         run: pwd
