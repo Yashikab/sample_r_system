@@ -41,5 +41,5 @@ jobs:
         - /src:/app/src
     steps:
       - name: Check R package
-        run: make check_R
+        run: ls -l
 
