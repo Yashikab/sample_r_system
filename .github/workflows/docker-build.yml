@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Ls
+        run: ls -la
       - name: Cat src
         run: cat src/sample.R
       - name: Cat renv
