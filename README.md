@@ -18,6 +18,9 @@ The way of istall R is depends on OS, so see [here](https://cloud.r-project.org/
 
 ### Install `renv`
 
+You must install renv in your local R package.
+You can run bellow command any directory on your local.
+
 ```bash
 # running R
 R
