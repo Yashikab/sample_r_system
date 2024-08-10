@@ -16,7 +16,6 @@ RUN R -e "renv::restore()"
 FROM base AS ci
 
 RUN mkdir -p /app
-WORKDIR /app
 COPY --from=base /renv /app/renv
 COPY --from=base /renv.lock /app/renv.lock
 ENV RENV_PATHS_CACHE=renv/.cache
@@ -25,5 +24,7 @@ COPY hack /app/hack
 COPY Makefile /app/Makefile
 
 RUN R -e "renv::repair()"
+
+ENV GITHUB_WORKSPACE=/app
 
 ENTRYPOINT [ "make" ]
