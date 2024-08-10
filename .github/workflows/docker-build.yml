@@ -45,6 +45,8 @@ jobs:
       run:
         working-directory: /ci_workspace
     steps:
+      - name: Cat src
+        run: cat src/sample.R
       - name: Cat renv
         run: cat renv.lock
       - name: run R
