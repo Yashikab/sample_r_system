@@ -27,6 +27,5 @@ COPY hack /${WORKSPACE}/hack
 COPY Makefile /${WORKSPACE}/Makefile
 
 WORKDIR /${WORKSPACE}
-RUN R -e "renv::repair()"
 
 ENTRYPOINT [ "make" ]

@@ -45,9 +45,8 @@ jobs:
       run:
         working-directory: /ci_workspace
     steps:
-      - name: pwd
-        run: pwd
-      - name: list
-        run: ls -l
       - name: Check R status
         run: make check_R
+      - name: Lint
+        run: make lint
+
