@@ -41,8 +41,9 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
       volumes:
         - /src:/app/src
-      env:
-        GITHUB_WORKSPACE: /app
+    defaults:
+      run:
+        working-directory: app
     steps:
       - name: pwd
         run: pwd
@@ -50,4 +51,3 @@ jobs:
         run: ls -l
       - name: Check R status
         run: make check_R
-
