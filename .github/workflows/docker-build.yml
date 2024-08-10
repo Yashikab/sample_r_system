@@ -41,5 +41,5 @@ jobs:
         - /src:/app/src
     steps:
       - name: Check R package
-        run: ls -l
+        run: pwd
 
