@@ -39,6 +39,8 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
       volumes:
         - /src:/app/src
+      env:
+        GITHUB_WORKSPACE: /app
     steps:
       - name: Check R package
         run: pwd
