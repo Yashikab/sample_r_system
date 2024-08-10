@@ -30,6 +30,8 @@ jobs:
           target: ci
           cache-from: type=registry,ref=yashikab/r-sample-ci:buildcache
           cache-to: type=registry,ref=yashikab/r-sample-ci:buildcache,mode=max
+      - name: check volume
+        run: pwd
 
   ci-check:
     needs: docker-build
