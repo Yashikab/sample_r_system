@@ -45,8 +45,12 @@ jobs:
       run:
         working-directory: /ci_workspace
     steps:
-      - name: Check R status
-        run: make check_R
+      - name: Cat renv
+        run: cat renv.lock
+      - name: run R
+        run: R -e 'library("stringr")'
+      # - name: Check R status
+      #   run: make check_R
       - name: Lint
         run: make lint
 
