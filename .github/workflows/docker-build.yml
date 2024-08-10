@@ -40,12 +40,12 @@ jobs:
       credentials:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-      volumes:
-        - /home/runner/work/sample_r_system/sample_r_system/src:/ci_workspace/src
     defaults:
       run:
         working-directory: /ci_workspace
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Cat src
         run: cat src/sample.R
       - name: Cat renv
