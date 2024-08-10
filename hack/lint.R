@@ -1,6 +1,3 @@
-library("renv")
-renv::repair()
-
 library("lintr")
 
 result <- lintr::lint_dir("src")

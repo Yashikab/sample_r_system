@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,4 +26,20 @@ jobs:
         with:
           context: .
           push: true
-          tags: yashikab/r-sample:latest
+          tags: yashikab/r-sample-ci:latest
+          target: ci
+
+  ci-check:
+    needs: docker-build
+    runs-on: ubuntu-latest
+    container:
+      image: yashikab/r-sample-ci:latest
+      credentials:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+      volumes:
+        - /src:/app/src
+    steps:
+      - name: Check R package
+        run: make check_R
+
