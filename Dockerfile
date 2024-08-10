@@ -26,7 +26,7 @@ ENV RENV_PATHS_CACHE=/${WORKSPACE}/renv/.cache
 COPY hack /${WORKSPACE}/hack
 COPY Makefile /${WORKSPACE}/Makefile
 
-WORKDIR ${WORKSPACE}
+WORKDIR /${WORKSPACE}
 RUN R -e "renv::repair()"
 
 ENTRYPOINT [ "make" ]
