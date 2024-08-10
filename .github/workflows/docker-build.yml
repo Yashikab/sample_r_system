@@ -31,7 +31,7 @@ jobs:
           cache-from: type=registry,ref=yashikab/r-sample-ci:buildcache
           cache-to: type=registry,ref=yashikab/r-sample-ci:buildcache,mode=max
       - name: check volume
-        run: echo "$"
+        run: echo ${{ github.workspace }}
   ci-check:
     needs: docker-build
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
       volumes:
-        - ${{ github.workspace }}/src:/ci_workspace/src
+        - /home/runner/work/sample_r_system/sample_r_system/src:/ci_workspace/src
     defaults:
       run:
         working-directory: /ci_workspace
