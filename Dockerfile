@@ -17,6 +17,7 @@ FROM base AS ci
 
 ENV WORKSPACE=ci_workspace
 RUN mkdir -p /${WORKSPACE}
+WORKDIR /${WORKSPACE}
 
 
 COPY --from=base /renv /${WORKSPACE}/renv
@@ -26,6 +27,6 @@ ENV RENV_PATHS_CACHE=/${WORKSPACE}/renv/.cache
 COPY hack /${WORKSPACE}/hack
 COPY Makefile /${WORKSPACE}/Makefile
 
-WORKDIR /${WORKSPACE}
+RUN R -e "renv::restore()"
 
 ENTRYPOINT [ "make" ]
