@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Ls
-        run: ls -la
+        run: ls -la /__w/sample_r_system/
       - name: Cat src
         run: cat src/sample.R
       - name: Cat renv
