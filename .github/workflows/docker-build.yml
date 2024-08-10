@@ -28,6 +28,8 @@ jobs:
           push: true
           tags: yashikab/r-sample-ci:latest
           target: ci
+          cache-from: type=registry,ref=yashikab/r-sample-ci:buildcache
+          cache-to: type=registry,ref=yashikab/r-sample-ci:buildcache,mode=max
 
   ci-check:
     needs: docker-build
@@ -42,6 +44,10 @@ jobs:
       env:
         GITHUB_WORKSPACE: /app
     steps:
-      - name: Check R package
+      - name: pwd
         run: pwd
+      - name: list
+        run: ls -l
+      - name: Check R status
+        run: make check_R
 
