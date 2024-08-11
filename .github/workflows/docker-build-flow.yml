@@ -1,6 +1,8 @@
 name: R sample flow
 on:
   push:
+    branches:
+      - feature/*
 
 jobs:
   docker-build:
