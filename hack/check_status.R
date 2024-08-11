@@ -1,5 +1,5 @@
 library("renv")
-renv::repair()
+renv::restore()
 # get status
 status <- renv::status()
 
@@ -12,4 +12,3 @@ if (status$synchronize) {
     message("There are changes in the project library.")
     stop("Please run 'renv::snapshot()' to save the changes.")
 }
-
