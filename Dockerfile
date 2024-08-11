@@ -33,3 +33,14 @@ COPY hack /${WORKSPACE}/hack
 COPY Makefile /${WORKSPACE}/Makefile
 
 ENTRYPOINT [ "make" ]
+
+FROM base AS production
+
+ENV WORKSPACE=app
+RUN mkdir -p /${WORKSPACE}
+WORKDIR /${WORKSPACE}
+COPY --from=base /basedir .
+
+COPY src /${WORKSPACE}/src
+
+ENTRYPOINT [ "R" ]
