@@ -47,11 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: copy sources
-        run: |
-          set -x
-          cp -r ${GITHUB_WORKSPACE}/src /ci/src
-      - name: ls src
-        run: ls -la ./src
+        run: cp -r ${GITHUB_WORKSPACE}/src /ci/src
       - name: Check R status
         run: make check_R
       - name: Lint
