@@ -21,10 +21,12 @@ RUN R -e "renv::restore()"
 
 FROM base AS ci
 
-ENV WORKSPACE=/__w/sample_r_system/sample_r_system
+ENV GITHUB_WOKRDIR=/__w/sample_r_system/sample_r_system
+RUN mkdir -p /${GITHUB_WOKRDIR}
+
+ENV WORKSPACE=ci
 RUN mkdir -p /${WORKSPACE}
 WORKDIR /${WORKSPACE}
-
 COPY --from=base /basedir .
 
 COPY hack /${WORKSPACE}/hack
