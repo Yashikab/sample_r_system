@@ -48,11 +48,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Copy Source
         run: cp -r ${GITHUB_WORKSPACE}/src /ci_workspace/src
-      - name: Ls
-        run: ls -la /ci_workspace/src
-      # - name: run R
-      #   run: R -e 'library("stringr")'
-      # - name: Check R status
-      #   run: make check_R
-      # - name: Lint
-      #   run: make lint
+      - name: Check R status
+        run: make check_R
+      - name: Lint
+        run: make lint
