@@ -43,15 +43,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            src
       - name: ls
         run: ls -la
       - name: ls src
         run: ls -la ./src
-      - name:
-        run: R -e "renv::restore()"
       - name: Check R status
         run: make check_R
       - name: Lint

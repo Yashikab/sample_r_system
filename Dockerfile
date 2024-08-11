@@ -6,10 +6,16 @@ RUN apt-get update \
 
 RUN R -e "install.packages('renv')"
 
+RUN mkdir -p /basedir
+WORKDIR /basedir
+RUN mkdir -p renv
+COPY renv.lock renv.lock
+COPY .Rprofile .Rprofile
+COPY renv/activate.R renv/activate.R
+COPY renv/settings.json renv/settings.json
 
-RUN mkdir -p /renv
-COPY ./renv /renv
-COPY ./renv.lock renv.lock
+RUN mkdir renv/.cache
+ENV RENV_PATHS_CACHE=renv/.cache
 RUN R -e "renv::restore()"
 
 
@@ -19,14 +25,9 @@ ENV WORKSPACE=/__w/sample_r_system/sample_r_system
 RUN mkdir -p /${WORKSPACE}
 WORKDIR /${WORKSPACE}
 
-
-COPY --from=base /renv /${WORKSPACE}/renv
-COPY --from=base /renv.lock /${WORKSPACE}/renv.lock
-ENV RENV_PATHS_CACHE=/${WORKSPACE}/renv/.cache
+COPY --from=base /basedir .
 
 COPY hack /${WORKSPACE}/hack
 COPY Makefile /${WORKSPACE}/Makefile
-
-RUN R -e "renv::restore()"
 
 ENTRYPOINT [ "make" ]
