@@ -46,14 +46,14 @@ jobs:
       run:
         working-directory: /ci_workspace
     steps:
-      - name: src ls
-        run: ls src
-      - name: Ls before
-        run: ls -la /__w/sample_r_system/sample_r_system/
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            src
+          path: /ci_workspace
       - name: Ls
-        run: ls -la /__w/sample_r_system/sample_r_system/
+        run: ls -la /ci_workspace/src
       - name: Cat src
         run: cat src/sample.R
       - name: Cat renv
