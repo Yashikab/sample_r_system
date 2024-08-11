@@ -4,6 +4,9 @@ fmt:
 lint:
 	Rscript hack/lint.R
 
+test:
+	Rscript hack/test.R
+
 check_R:
 	Rscript hack/check_status.R
 
