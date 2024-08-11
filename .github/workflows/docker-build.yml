@@ -40,28 +40,20 @@ jobs:
       credentials:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-      volumes:
-        - ${{ github.workspace }}/src:/ci_workspace/src
     defaults:
       run:
         working-directory: /ci_workspace
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            src
-          path: /ci_workspace
+      - name: echo workspace
+        run: echo ${GITHUB_WORKSPACE}
       - name: Ls
         run: ls -la /ci_workspace/src
-      - name: Cat src
-        run: cat src/sample.R
-      - name: Cat renv
-        run: cat renv.lock
-      - name: run R
-        run: R -e 'library("stringr")'
+      # - name: run R
+      #   run: R -e 'library("stringr")'
       # - name: Check R status
       #   run: make check_R
-      - name: Lint
-        run: make lint
+      # - name: Lint
+      #   run: make lint
 
