@@ -40,10 +40,16 @@ jobs:
       credentials:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+      volumes:
+        - ${{ github.workspace }}/src:/ci_workspace/src
     defaults:
       run:
         working-directory: /ci_workspace
     steps:
+      - name: src ls
+        run: ls src
+      - name: Ls before
+        run: ls -la /__w/sample_r_system/sample_r_system/
       - name: Checkout
         uses: actions/checkout@v4
       - name: Ls
