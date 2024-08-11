@@ -40,18 +40,16 @@ jobs:
       credentials:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-    defaults:
-      run:
-        working-directory: /ci_workspace
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Copy Source
-        run: |
-          cp -r ${GITHUB_WORKSPACE}/src /ci_workspace/src
-          chmod a+x /ci_workspace/src/*
+        with:
+          sparse-checkout: |
+            src
       - name: ls
-        run: ls -la /ci_workspace/src
+        run: ls -la
+      - name: ls src
+        run: ls -la ./src
       - name: Check R status
         run: make check_R
       - name: Lint

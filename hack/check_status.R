@@ -1,5 +1,5 @@
 library("renv")
-renv::restore()
+# renv::restore()
 # get status
 status <- renv::status()
 

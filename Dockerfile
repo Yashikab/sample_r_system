@@ -15,7 +15,7 @@ RUN R -e "renv::restore()"
 
 FROM base AS ci
 
-ENV WORKSPACE=ci_workspace
+ENV WORKSPACE=/__w/sample_r_system/sample_r_system
 RUN mkdir -p /${WORKSPACE}
 WORKDIR /${WORKSPACE}
 
