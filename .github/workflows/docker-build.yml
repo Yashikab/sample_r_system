@@ -40,6 +40,8 @@ jobs:
       credentials:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+      env:
+        GITHUB_WORKSPACE: /ci_workspace
     defaults:
       run:
         working-directory: /ci_workspace
