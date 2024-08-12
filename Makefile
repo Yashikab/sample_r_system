@@ -12,3 +12,6 @@ check_R:
 
 sync_R:
 	Rscript hack/synchronize.R
+
+install:
+	Rscript hack/install.R
